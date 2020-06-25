@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DigitalOcean Classroom</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css"
+    />
+  </head>
+  <body>
+    <!-- pages -->
+    <!-- / join a classroom page -->
+    <!-- /:class_id if im in a classroom, show other droplets from the class -->
+    <!-- /:class_id/create if im in a classroom, show the create droplet button -->
+    <!-- /:class_id if im in a classroom, show my droplets -->
+
+    <!-- api calls -->
+    <!-- classroom: join -->
+    <!-- classroom: count droplets -->
+    <!-- droplets: view -->
+    <!-- droplets: create -->
+    <!-- droplets: delete -->
+
+    <!-- components -->
+    <!-- classroom -->
+    <!-- droplet w/ user -->
+    <!-- droplet w/ ip address -->
+    <!-- droplet w/ action buttons -->
+
+    <div id="app">
+      <h1>Hello App!</h1>
+      <router-link to="/">Home</router-link>
+      <router-link to="/classroom">Go to Classroom</router-link>
+
+      <router-view></router-view>
+    </div>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="./home.js"></script>
+    <script src="./classroom.js"></script>
+    <script src="./droplet.js"></script>
+    <script>
+      const router = new VueRouter({
+        mode: 'history',
+        routes: [
+          { path: '/', component: Home },
+          { path: '/classroom/:classroom_id', component: Classroom },
+          { path: '/classroom/:classroom_id/:droplet_id', component: Droplet },
+        ],
+      });
+      const app = new Vue({
+        data: {
+          classroomId: null,
+        },
+        mounted: function () {
+          console.log('whatup');
+          // check localstorage for classroom id
+        },
+        methods: {},
+        router,
+      }).$mount('#app');
+    </script>
+  </body>
+</html>
