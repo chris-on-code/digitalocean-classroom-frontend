@@ -9,6 +9,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./fancy-stuff.css" />
   </head>
   <body>
     <!-- pages -->
@@ -30,14 +35,17 @@
     <!-- droplet w/ ip address -->
     <!-- droplet w/ action buttons -->
 
-    chris was here
-
-    <div id="app">
-      <h1>Hello App!</h1>
-      <router-link to="/">Home</router-link>
-      <router-link to="/classroom">Go to Classroom</router-link>
-
-      <router-view></router-view>
+    <div
+      id="app"
+      class="min-h-screen bg-blue-900 text-blue-100 flex items-center"
+    >
+      <div>
+        <router-link to="/" class="balsamiq">Home</router-link>
+        <router-link to="/classroom" class="balsamiq"
+          >Go to Classroom</router-link
+        >
+        <router-view></router-view>
+      </div>
     </div>
 
     <script src="https://unpkg.com/vue/dist/vue.js"></script>

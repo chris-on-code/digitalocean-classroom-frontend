@@ -1,1 +1,1 @@
-const Classroom = { template: '' };
+const Classroom = { template: '<div>classroom</div>' };
