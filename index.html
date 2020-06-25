@@ -39,11 +39,11 @@
       id="app"
       class="min-h-screen bg-blue-900 text-blue-100 flex items-center"
     >
-      <div>
-        <router-link to="/" class="balsamiq">Home</router-link>
+      <div class="container p-20">
+        <!-- <router-link to="/" class="balsamiq">Home</router-link>
         <router-link to="/classroom" class="balsamiq"
           >Go to Classroom</router-link
-        >
+        > -->
         <router-view></router-view>
       </div>
     </div>
@@ -58,20 +58,20 @@
         mode: 'history',
         routes: [
           { path: '/', component: Home },
-          { path: '/classroom/:classroom_id', component: Classroom },
-          { path: '/classroom/:classroom_id/:droplet_id', component: Droplet }
-        ]
+          { path: '/classroom/:classroomId', component: Classroom },
+          { path: '/classroom/:classroomId/:dropletId', component: Droplet },
+        ],
       });
       const app = new Vue({
         router,
         data: {
-          classroomId: null
+          classroomId: null,
         },
-        mounted: function() {
+        mounted: function () {
           console.log('whatup');
           // check localstorage for classroom id
         },
-        methods: {}
+        methods: {},
       }).$mount('#app');
     </script>
   </body>

@@ -1,1 +1,1 @@
-const Classroom = { template: '<div>classroom</div>' };
+const Classroom = { template: '<div>{{ $route.params.classroomId }}</div>' };
