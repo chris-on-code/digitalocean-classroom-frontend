@@ -13,7 +13,7 @@
       href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./fancy-stuff.css" />
+    <link rel="stylesheet" href="/fancy-stuff.css" />
   </head>
   <body>
     <!-- pages -->
@@ -35,10 +35,7 @@
     <!-- droplet w/ ip address -->
     <!-- droplet w/ action buttons -->
 
-    <div
-      id="app"
-      class="min-h-screen bg-blue-900 text-blue-100 flex items-center"
-    >
+    <div id="app" class="min-h-screen bg-blue-900 text-blue-100">
       <div class="container p-20">
         <!-- <router-link to="/" class="balsamiq">Home</router-link>
         <router-link to="/classroom" class="balsamiq"
@@ -50,15 +47,19 @@
 
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-    <script src="./home.js"></script>
-    <script src="./classroom.js"></script>
-    <script src="./droplet.js"></script>
+    <script src="/home.js"></script>
+    <script src="/classroom.js"></script>
+    <script src="/droplet.js"></script>
     <script>
       const router = new VueRouter({
         mode: 'history',
         routes: [
           { path: '/', component: Home },
-          { path: '/classroom/:classroomId', component: Classroom },
+          {
+            path: '/classroom/:classroomId',
+            name: 'classroom',
+            component: Classroom,
+          },
           { path: '/classroom/:classroomId/:dropletId', component: Droplet },
         ],
       });
