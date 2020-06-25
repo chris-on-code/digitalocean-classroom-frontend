@@ -53,6 +53,7 @@
         ],
       });
       const app = new Vue({
+        router,
         data: {
           classroomId: null,
         },
@@ -61,7 +62,6 @@
           // check localstorage for classroom id
         },
         methods: {},
-        router,
       }).$mount('#app');
     </script>
   </body>
