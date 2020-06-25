@@ -30,6 +30,8 @@
     <!-- droplet w/ ip address -->
     <!-- droplet w/ action buttons -->
 
+    chris was here
+
     <div id="app">
       <h1>Hello App!</h1>
       <router-link to="/">Home</router-link>
@@ -49,19 +51,19 @@
         routes: [
           { path: '/', component: Home },
           { path: '/classroom/:classroom_id', component: Classroom },
-          { path: '/classroom/:classroom_id/:droplet_id', component: Droplet },
-        ],
+          { path: '/classroom/:classroom_id/:droplet_id', component: Droplet }
+        ]
       });
       const app = new Vue({
         router,
         data: {
-          classroomId: null,
+          classroomId: null
         },
-        mounted: function () {
+        mounted: function() {
           console.log('whatup');
           // check localstorage for classroom id
         },
-        methods: {},
+        methods: {}
       }).$mount('#app');
     </script>
   </body>
