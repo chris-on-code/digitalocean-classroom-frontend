@@ -45,14 +45,15 @@
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script src="/home.js"></script>
     <script src="/classroom.js"></script>
+    <script src="/droplet.js"></script>
     <script>
-      const apiUrl = 'http://dev.zelgius.codes:8000/api/v1';
+      const apiUrl = 'http://sharkahack.sammy-codes.com:8000/api/v1';
       const router = new VueRouter({
         mode: 'history',
         routes: [
           { path: '/', name: 'home', component: Home },
           {
-            path: '/classrooms/:classroomId',
+            path: '/classrooms/:classroomId/:classroomName',
             name: 'classroom',
             component: Classroom,
           },

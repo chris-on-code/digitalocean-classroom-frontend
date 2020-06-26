@@ -20,22 +20,17 @@ const Home = Vue.component('home', {
 Vue.component('classrooms-list', {
   data() {
     return {
-      classrooms: [
-        { id: 2, name: 'math' },
-        { id: 2, name: 'science' },
-        { id: 2, name: 'chemistry' },
-        { id: 2, name: 'biology' },
-      ],
+      classrooms: [],
     };
   },
   mounted() {
-    //   getClassrooms();
+    this.getClassrooms();
   },
   methods: {
     async getClassrooms() {
-      const res = await fetch(`${apiUrl}/classes`);
+      const res = await fetch(`${apiUrl}/classes/`);
       const data = await res.json();
-      // TODO: bind classrooms to this.classrooms
+      this.classrooms = data.classes;
     },
   },
   template: `
@@ -66,10 +61,10 @@ Vue.component('classroom-link', {
     };
   },
   methods: {
-    goToClassroom(id) {
+    goToClassroom(classroom) {
       this.$router.push({
         name: 'classroom',
-        params: { classroomId: id },
+        params: { classroomId: classroom.id, classroomName: classroom.name },
       });
     },
   },
@@ -82,7 +77,7 @@ Vue.component('classroom-link', {
     },
   },
   template: `
-    <button class="classroom-link w-32 h-32 mr-8 mb-8 outline-none border-none" @click="goToClassroom(classroom.id)">
+    <button class="classroom-link w-32 h-32 mr-8 mb-8 outline-none border-none" @click="goToClassroom(classroom)">
       <!-- colored square -->
       <div class="icon w-full h-20 mb-2 rounded-md hover:shadow-lg relative overflow-hidden transition ease-in duration-75" :class="[randomColorClass]">
         <span class="absolute top-0 right-0 mr-2 leading-none uppercase font-bold" style="font-size: 120px; transform: translateY(-20px)">
