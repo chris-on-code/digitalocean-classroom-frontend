@@ -1,40 +1,24 @@
 const Home = Vue.component('home', {
   template: `
     <div>
-      <h2 class="text-6xl text-white mb-6">Join a Classroom</h2>
-    
-      <join-class-form class="mb-10" />
+      <h2 class="text-4xl lg:text-6xl text-white mb-10">
+        Join a Classroom
+        <span class="ml-4" role="img">
+          <span class="sharky">🦈</span>
+          <span class="sharky">🦈</span>
+          <span class="sharky">🦈</span>
+        </span>
+      </h2>
       <classrooms-list />
     </div>
 `,
 });
 
-Vue.component('join-class-form', {
-  data: function () {
-    return {
-      apiKey: 'test',
-    };
-  },
-  methods: {
-    joinClassroom: function () {
-      this.$router.push({ name: 'classroom', params: { classroomId: '123' } });
-      // fetch('join-the-classroom.com')
-      //   .then((res) => res.json())
-      //   .then((data) => {
-      //     // we should have the classroom_id
-      //     // route to the classroom route
-      //   });
-    },
-  },
-  template: `
-    <form @submit.prevent="joinClassroom">
-      <input type="text" class="rounded-lg shadow-md focus:shadow-lg w-full py-3 px-4 outline-none bg-white" placeholder="Your API Key Here" v-model="apiKey" />
-    </form>
-  `,
-});
-
+/**
+ * Classroom List
+ */
 Vue.component('classrooms-list', {
-  data: function () {
+  data() {
     return {
       classrooms: [
         { id: 2, name: 'math' },
@@ -44,27 +28,70 @@ Vue.component('classrooms-list', {
       ],
     };
   },
-  // mounted: function () {
-  //   getClassrooms();
-  // },
+  mounted() {
+    //   getClassrooms();
+  },
   methods: {
-    //   getClassrooms: function () {
-    //     fetch('go-get-classrooms-for-a-user');
-    //   },
-    goToClassroom: function (id) {
-      this.$router.push({ name: 'classroom', params: { classroomId: id } });
+    async getClassrooms() {
+      const res = await fetch(`${apiUrl}/classes`);
+      const data = await res.json();
+      // TODO: bind classrooms to this.classrooms
     },
   },
   template: `
-    <div>
-      <h2 class="super-duper-custom-font text-xl text-blue-200 mb-4">Classrooms <span class="text-sm opacity-75 ml-2">({{ classrooms.length }})</span></h2>
-
-      <div class="flex flex-wrap text-center">
-        <button class="w-24 h-24 mr-8 mb-8" v-for="(classroom, index) in classrooms" :key="index" @click="goToClassroom(classroom.id)">
-          <div class="icon w-full h-20 bg-yellow-400 mb-2 rounded-md hover:shadow-lg"></div>
-          <p class="text-xs text-blue-300">Random Text</p>
-        </button>
-      </div>
+    <div class="flex flex-wrap text-center">
+      <classroom-link v-for="(classroom, index) in classrooms" :key="index" :classroom="classroom" />
     </div>
+  `,
+});
+
+/**
+ * Show a link to a specific classroom
+ */
+Vue.component('classroom-link', {
+  props: ['classroom'],
+  data() {
+    return {
+      colors: [
+        'red',
+        'orange',
+        'yellow',
+        'green',
+        'teal',
+        'blue',
+        'indigo',
+        'purple',
+        'pink',
+      ],
+    };
+  },
+  methods: {
+    goToClassroom(id) {
+      this.$router.push({
+        name: 'classroom',
+        params: { classroomId: id },
+      });
+    },
+  },
+  computed: {
+    randomColorClass() {
+      const randomColor = this.colors[
+        Math.floor(Math.random() * this.colors.length)
+      ];
+      return `text-${randomColor}-300 hover:text-${randomColor}-600 bg-${randomColor}-400 hover:bg-${randomColor}-300`;
+    },
+  },
+  template: `
+    <button class="classroom-link w-32 h-32 mr-8 mb-8 outline-none border-none" @click="goToClassroom(classroom.id)">
+      <!-- colored square -->
+      <div class="icon w-full h-20 mb-2 rounded-md hover:shadow-lg relative overflow-hidden transition ease-in duration-75" :class="[randomColorClass]">
+        <span class="absolute top-0 right-0 mr-2 leading-none uppercase font-bold" style="font-size: 120px; transform: translateY(-20px)">
+          {{ classroom.name.substring(0, 1) }}
+        </span>
+      </div>
+
+      <!-- class name -->
+      <p class="text-blue-200 capitalize">{{ classroom.name }}</p>
+    </button>
   `,
 });

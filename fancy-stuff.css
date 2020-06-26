@@ -16,3 +16,33 @@ h6 {
 .super-duper-custom-font {
   font-family: 'Noto Serif', cursive;
 }
+
+.classroom-link .icon span {
+  transition: 0.3s cubic-bezier(0.41, 0.33, 0.2, 1.65) transform;
+}
+
+.classroom-link:hover .icon span {
+  transform: translateY(-20px) scale(1.25) !important;
+}
+
+.sharky {
+  display: inline-block;
+  animation: 5s bounce infinite;
+}
+
+.sharky:nth-child(2) {
+  animation-delay: 0.65s;
+}
+
+.sharky:last-child {
+  animation-delay: 1.2s;
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0) }
+  20% { transform: translateY(30px) }
+  40% { transform: translateY(15px) }
+  60% { transform: translateY(-15px) }
+  80% { transform: translateY(30px) }
+  100% { transform: translateY(0) }
+}
