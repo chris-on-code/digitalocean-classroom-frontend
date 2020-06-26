@@ -67,9 +67,11 @@ Vue.component('droplet', {
     <div class="bg-white shadow mb-4 p-4 rounded flex justify-between">
       <!-- info -->
       <div>
-        <h4 class="text-lg text-gray-700 mb-2">{{ droplet.name }}</h4>
+        <h4 class="text-lg text-gray-700 mb-4">{{ droplet.name }}</h4>
         <div class="text-sm text-gray-600">
           <a :href="formatUrl(droplet.ip_addr)" target="_blank" rel="noopener noreferer" class="text-blue-400 hover:text-blue-600">{{ droplet.ip_addr }}</a>
+
+          <div><strong>Password</strong>: {{ droplet.initial_password }}</div>
         </div>
       </div>
       

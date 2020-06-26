@@ -1,7 +1,6 @@
 const Classroom = Vue.component('classroom', {
   data() {
     return {
-      token: null,
       classroomId: this.$route.params.classroomId,
       classroomName: this.$route.params.classroomName,
       isEnrolled: false,
@@ -10,13 +9,13 @@ const Classroom = Vue.component('classroom', {
     };
   },
   mounted() {
-    if (localStorage.do_token) this.token = localStorage.do_token;
     this.checkIfUserIsEnrolled();
     this.getMyDroplets();
     this.getClassroomDroplets();
   },
   methods: {
     refreshDroplets() {
+      console.log('refreshing droplets');
       this.getMyDroplets();
       this.getClassroomDroplets();
     },
@@ -28,33 +27,33 @@ const Classroom = Vue.component('classroom', {
     handleDropletUpdated: () => this.refreshDroplets(),
     handleDropletDeleted: () => this.refreshDroplets(),
     async checkIfUserIsEnrolled() {
-      if (!this.token) return;
+      const token = localStorage.do_token;
       const res = await fetch(
         `${apiUrl}/classes/enrolled/${this.classroomId}`,
         {
-          headers: { Authorization: `Token ${this.token}` },
+          headers: { Authorization: `Token ${token}` },
         }
       );
       const data = await res.json();
       if (data.status === 200) this.isEnrolled = true;
     },
     async getMyDroplets() {
-      if (!this.token) return;
+      const token = localStorage.do_token;
       const res = await fetch(
         `${apiUrl}/droplets/view/class/${this.classroomId}`,
         {
-          headers: { Authorization: `Token ${this.token}` },
+          headers: { Authorization: `Token ${token}` },
         }
       );
       const data = await res.json();
       this.myDroplets = data.droplets;
     },
     async getClassroomDroplets() {
-      if (!this.token) return;
+      const token = localStorage.do_token;
       const res = await fetch(
         `${apiUrl}/droplets/class-droplet-count/${this.classroomId}`,
         {
-          headers: { Authorization: `Token ${this.token}` },
+          headers: { Authorization: `Token ${token}` },
         }
       );
       const data = await res.json();
