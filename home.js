@@ -1,7 +1,7 @@
 const Home = Vue.component('home', {
   template: `
     <div>
-      <h2 class="text-4xl text-white mb-6">Join a Classroom</h2>
+      <h2 class="text-6xl text-white mb-6">Join a Classroom</h2>
     
       <join-class-form class="mb-10" />
       <classrooms-list />
@@ -28,7 +28,7 @@ Vue.component('join-class-form', {
   },
   template: `
     <form @submit.prevent="joinClassroom">
-      <input type="text" class="rounded-lg shadow-md focus:shadow-lg w-full py-3 px-4 outline-none bg-blue-800 text-blue-100 border-2 border-blue-600 focus:border-blue-200" placeholder="Your API Key Here" v-model="apiKey" />
+      <input type="text" class="rounded-lg shadow-md focus:shadow-lg w-full py-3 px-4 outline-none bg-white" placeholder="Your API Key Here" v-model="apiKey" />
     </form>
   `,
 });
@@ -57,7 +57,7 @@ Vue.component('classrooms-list', {
   },
   template: `
     <div>
-      <h2 class="balsamiq text-xl text-blue-200 mb-4">Classrooms <span class="text-sm opacity-75 ml-2">({{ classrooms.length }})</span></h2>
+      <h2 class="super-duper-custom-font text-xl text-blue-200 mb-4">Classrooms <span class="text-sm opacity-75 ml-2">({{ classrooms.length }})</span></h2>
 
       <div class="flex flex-wrap text-center">
         <button class="w-24 h-24 mr-8 mb-8" v-for="(classroom, index) in classrooms" :key="index" @click="goToClassroom(classroom.id)">

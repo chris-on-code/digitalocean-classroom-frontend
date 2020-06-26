@@ -1,12 +1,18 @@
+body {
+  background-image: url('https://www.digitalocean.com/static/bg-home-hero-3-bb4b33b77274db09b969f629ad81c4d5.svg');
+  background-position: top left;
+  background-size: cover;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: 'Balsamiq Sans', cursive;
+  font-family: 'Noto Serif', cursive;
 }
 
-.balsamiq {
-  font-family: 'Balsamiq Sans', cursive;
+.super-duper-custom-font {
+  font-family: 'Noto Serif', cursive;
 }
